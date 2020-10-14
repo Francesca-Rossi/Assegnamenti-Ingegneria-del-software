@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Activity;
+
 public class Race extends Activity
 {
     public Race(){

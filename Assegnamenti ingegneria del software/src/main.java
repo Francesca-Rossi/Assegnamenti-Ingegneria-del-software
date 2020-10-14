@@ -1,26 +1,28 @@
+import entities.*;
+import utils.Type;
+
 public class main {
     public static void main(String args[]) {
-        Circolo circolo = new Circolo();
+        Circle circle = new Circle();
 
-        Persona socio = new Socio();
+        Member socio = new Member();
         socio
-                .setName("")
-                .setSurname("")
+                .setName("Ruslan")
+                .setSurname("Vasyunin")
                 .setEmail("")
                 .setType(Type.SOCIO);
 
         Activity gara = new Race();
-        ((Socio) socio).subscribe(gara);
-        ((Socio) socio).delete(gara);
+        Race race = new Race();
 
-        ((Socio) socio).toString();
-        
+        socio.subscribe(gara);
+        socio.unscribe(gara);
 
-        Persona admin = new Amministratore(circolo);
-        ((Amministratore) admin).addUser(socio);
-        ((Amministratore) admin).deleteUser(socio);
-        ((Amministratore) admin).subscribe(gara);
-        ((Amministratore) admin).delete(gara);
+        Admin admin = new Admin(circle);
+        admin.addUser(socio);
+        admin.deleteUser(socio);
+        admin.addActivity(race);
+
 
         admin
                 .setName("")
