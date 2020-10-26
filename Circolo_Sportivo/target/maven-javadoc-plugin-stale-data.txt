@@ -1,0 +1,46 @@
+/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/../bin/javadoc
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'circolo-sportivo 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'circolo-sportivo 1.0-SNAPSHOT API'
+it.unipr.ingegneria.utils
+it.unipr.ingegneria
+it.unipr.ingegneria.api
+it.unipr.ingegneria.exception
+it.unipr.ingegneria.entities
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/src/main/java/.DS_Store = 1603738114000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/src/main/java = 1603738109000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/constant-values.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/overview-tree.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/index.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/overview-frame.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/allclasses-noframe.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/serialized-form.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/index-all.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/deprecated-list.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/script.js = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/stylesheet.css = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/overview-summary.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/help-doc.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/allclasses-frame.html = 1603739236000
+/Users/ruslan.vasyunin/git/Assegnamenti-Ingegneria-del-software/Circolo_Sportivo/target/apidocs/package-list = 1603739236000

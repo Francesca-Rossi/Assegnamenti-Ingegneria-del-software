@@ -1,0 +1,16 @@
+it/unipr/ingegneria/entities/Race.class
+it/unipr/ingegneria/utils/Typology.class
+it/unipr/ingegneria/entities/Person.class
+it/unipr/ingegneria/utils/LogWriter.class
+it/unipr/ingegneria/entities/Course.class
+it/unipr/ingegneria/exception/ElementAlreadyPresentException.class
+it/unipr/ingegneria/utils/Type.class
+it/unipr/ingegneria/api/IRandom.class
+it/unipr/ingegneria/exception/ListEmptyException.class
+it/unipr/ingegneria/entities/Activity.class
+it/unipr/ingegneria/api/IOperations.class
+it/unipr/ingegneria/entities/Member.class
+it/unipr/ingegneria/api/IOperationsPrevileged.class
+it/unipr/ingegneria/entities/Circle.class
+it/unipr/ingegneria/entities/Admin.class
+it/unipr/ingegneria/main.class

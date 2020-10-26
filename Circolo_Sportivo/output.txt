@@ -1,0 +1,92 @@
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 2	Name: Riccardo	Surname: Gialli	
+with Role: 	MEMBER
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 3	Name: Noemi	Surname: Verdi	
+with Role: 	MEMBER
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 4	Name: Noemi	Surname: Gialli	
+with Role: 	MEMBER
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 5	Name: Giorgio	Surname: Verdi	
+with Role: 	MEMBER
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has added user: 	ID: 6	Name: Riccardo	Surname: Gialli	
+with Role: 	MEMBER
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	COURSE: ID: 1 Name: Pallavolo 2
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	RACE: ID: 2 Name: Sfida Judo 3
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	COURSE: ID: 3 Name: Pallavolo 3
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	RACE: ID: 4 Name: Sfida Arti Marziali 1
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	COURSE: ID: 5 Name: Arti Marziali 1
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	RACE: ID: 6 Name: Gara Nuto 2
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has created: 	COURSE: ID: 7 Name: Arti Marziali 4
+
+
+ID: 5	Name: Giorgio	Surname: Verdi	
+with Role: 	MEMBER
+has subscribed to: 	RACE: ID: 4 Name: Sfida Arti Marziali 1
+
+
+ID: 5	Name: Giorgio	Surname: Verdi	
+with Role: 	MEMBER
+has subscribed to: 	COURSE: ID: 7 Name: Arti Marziali 4
+
+
+ID: 5	Name: Giorgio	Surname: Verdi	
+with Role: 	MEMBER
+has unsubscribed from: 	COURSE: ID: 7 Name: Arti Marziali 4
+
+
+ID: 1	Name: Lucia	Surname: Azzolina	
+with Role: 	ADMIN
+has edited user information of: 	ID: 4	Name: Noemi	Surname: Gialli	
+to: 	ID: 4	Name: Achille	Surname: Gialli	
+
+
