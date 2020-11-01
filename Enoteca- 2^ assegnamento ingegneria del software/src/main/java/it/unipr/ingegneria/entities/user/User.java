@@ -2,13 +2,12 @@ package it.unipr.ingegneria.entities.user;
 
 
 import it.unipr.ingegneria.entities.WineShop;
-import it.unipr.ingegneria.entities.api.IObserver;
 import it.unipr.ingegneria.utils.Type;
 
 import java.util.Observer;
 
 
-public abstract class User implements IObserver {
+public abstract class User {
 
     private long _id;
     private String name;
