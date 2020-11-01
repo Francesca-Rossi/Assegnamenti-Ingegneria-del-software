@@ -2,8 +2,11 @@ package it.unipr.ingegneria.repo;
 
 import it.unipr.ingegneria.entities.Wine;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +47,16 @@ public class WineRepository implements CommonOperations<Wine> {
         return items.stream()
                 .filter(i -> i.getName().equals(name))
                 .collect(Collectors.toList());
+    }
+
+    public List<Wine> findByYear(final int year) {
+        return items.stream()
+                .filter(i -> workWithDate(i.getYear()) == year)
+                .collect(Collectors.toList());
+    }
+
+    private int workWithDate(Date date) {
+        return LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date)).getYear();
     }
 
 }

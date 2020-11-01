@@ -3,26 +3,24 @@ package it.unipr.ingegneria.entities;
 
 import it.unipr.ingegneria.entities.api.IObservable;
 import it.unipr.ingegneria.entities.api.IObserver;
-import it.unipr.ingegneria.entities.api.StoreManager;
-import it.unipr.ingegneria.entities.api.UserManager;
+import it.unipr.ingegneria.entities.api.IStoreManager;
+import it.unipr.ingegneria.entities.api.IUserManager;
 import it.unipr.ingegneria.entities.exception.AvailabilityException;
 import it.unipr.ingegneria.entities.exception.RequiredValueException;
-import it.unipr.ingegneria.entities.user.Customer;
 import it.unipr.ingegneria.entities.notifications.CustomerNotification;
+import it.unipr.ingegneria.entities.user.Customer;
 import it.unipr.ingegneria.entities.user.User;
-import it.unipr.ingegneria.repo.WineRepository;
 import it.unipr.ingegneria.utils.Params;
 import org.apache.log4j.Logger;
-
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
 public class WineShop implements
-        UserManager, StoreManager, IObservable<CustomerNotification>, IObserver {
+        IUserManager, IStoreManager<Wine>, IObservable<CustomerNotification>, IObserver {
 
-    private WineRepository wineRepo = WineRepository.getInstance();
     Logger logger = Logger.getLogger(WineShop.class);
 
     private Warehouse warehouse;
@@ -61,6 +59,16 @@ public class WineShop implements
         }
     }
 
+    @Override
+    public List<Wine> findByName(String name) {
+        return this.warehouse.findByName(name);
+    }
+
+    @Override
+    public List<Wine> findByYear(int d) {
+        return this.warehouse.findByYear(d);
+    }
+
 
     @Override
     public void addUser(User user) {
@@ -78,7 +86,6 @@ public class WineShop implements
     }
 
 
-
     @Override
     public void update(Object o) {
         List<Wine> winesAvailable = this.warehouse.getAvailableWines();
@@ -90,7 +97,7 @@ public class WineShop implements
                     .collect(Collectors.toList()).size();
 
             Customer customer = observer.getCustomer();
-            if (sizes >= 1)
+            if (sizes >= observer.getQuantity())
                 customer.update("");
         }
     }

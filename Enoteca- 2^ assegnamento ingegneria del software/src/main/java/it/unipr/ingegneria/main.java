@@ -16,10 +16,15 @@ public class main {
 
         WineShop wineShop = new WineShop();
 
+
         Customer customer = new Customer(1L, "Ruslan", "Vasyunin", "email", "pwd", wineShop);
         wineShop.addUser(customer);
         customer.login("email", "pwd");
-        customer.order("Lambrusco", 2);
+        customer.order("Lambrusco", 10);
+
+        Employee emp = new Employee(1L, "Ruslan", "Vasyunin", "email", "pwd", wineShop);
+        emp.provisionWine("Lambrusco", 15);
+
 
         Customer customer1 = new Customer(2L, "Anna", "Russo", "email", "pwd", wineShop);
         wineShop.addUser(customer1);
@@ -27,12 +32,7 @@ public class main {
         customer1.order("Lambrusco", 1);
 
 
-        Employee emp = new Employee(1L, "Ruslan", "Vasyunin", "email", "pwd", wineShop);
-        emp.provisionWine("Lambrusco", 10);
-
         logger.info("||" + wineRepo.getItems().size());
-
-
 
 
     }

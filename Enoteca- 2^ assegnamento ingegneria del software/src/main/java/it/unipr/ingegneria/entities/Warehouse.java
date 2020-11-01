@@ -1,6 +1,7 @@
 package it.unipr.ingegneria.entities;
 
 import it.unipr.ingegneria.entities.api.IObservable;
+import it.unipr.ingegneria.entities.api.IWarehouseManager;
 import it.unipr.ingegneria.entities.exception.AvailabilityException;
 import it.unipr.ingegneria.entities.exception.RequiredValueException;
 import it.unipr.ingegneria.repo.WineRepository;
@@ -15,9 +16,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Warehouse implements IObservable<WineShop> {
+public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop> {
+
     private WineRepository wineRepo = WineRepository.getInstance();
     private static final Logger logger = Logger.getLogger(Warehouse.class);
+
     private List<WineShop> observers = new ArrayList<>();
 
     public void add(Map<Params, Object> elements) throws RequiredValueException {
@@ -44,7 +47,6 @@ public class Warehouse implements IObservable<WineShop> {
         updateSubscribers();
     }
 
-
     public void remove(Map<Params, Object> elements) throws RequiredValueException, AvailabilityException {
         isValidValues(elements);
         String name = (String) elements.get(Params.NAME);
@@ -68,8 +70,16 @@ public class Warehouse implements IObservable<WineShop> {
 
     }
 
-    public List<Wine> getAvailableWines(){
+    public List<Wine> getAvailableWines() {
         return this.wineRepo.getItems();
+    }
+
+    public List<Wine> findByName(String name) {
+        return this.wineRepo.findByName(name);
+    }
+
+    public List<Wine> findByYear(int year) {
+        return this.wineRepo.findByYear(year);
     }
 
     private void isValidValues(Map<Params, Object> elements) throws RequiredValueException {
@@ -96,8 +106,7 @@ public class Warehouse implements IObservable<WineShop> {
 
     public void updateSubscribers() {
         for (WineShop observer : this.observers) {
-            String messageUpdated = "UPDATED";
-            observer.update(messageUpdated);
+            observer.update(null);
         }
     }
 }

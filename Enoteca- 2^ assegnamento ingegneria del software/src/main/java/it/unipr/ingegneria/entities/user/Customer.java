@@ -6,6 +6,7 @@ import it.unipr.ingegneria.entities.api.IObserver;
 import it.unipr.ingegneria.entities.exception.AvailabilityException;
 import it.unipr.ingegneria.entities.exception.NotFoundException;
 import it.unipr.ingegneria.entities.notifications.CustomerNotification;
+import it.unipr.ingegneria.utils.LogMessages;
 import it.unipr.ingegneria.utils.Params;
 import it.unipr.ingegneria.utils.Type;
 import org.apache.log4j.Logger;
@@ -29,7 +30,7 @@ public class Customer extends User implements IAuthentication, IObserver {
 
 
     public void order(String name, int quantity) {
-        StringBuilder builder = null;
+
         if (isAuthenticated) {
             try {
                 Map<Params, Object> elements = new HashMap<>();
@@ -37,15 +38,7 @@ public class Customer extends User implements IAuthentication, IObserver {
                 elements.put(Params.NAME, name);
                 this.getWineshop().sellWine(elements);
             } catch (AvailabilityException e) {
-                 builder = new StringBuilder()
-                        .append("Dear ")
-                        .append(this.getName())
-                        .append(" ")
-                        .append(this.getSurname())
-                        .append(" the wine that you searched ")
-                        .append(name)
-                        .append(" at the moment is not available");
-                logger.info(builder.toString());
+                logger.info(LogMessages.wineEnded(this, name));
                 notification =
                         new CustomerNotification()
                                 .setCustomer(this)
@@ -56,14 +49,7 @@ public class Customer extends User implements IAuthentication, IObserver {
                 logger.info(e);
             }
         }  else {
-
-            builder = new StringBuilder()
-                    .append("User ")
-                    .append(this.getName())
-                    .append(" ")
-                    .append(this.getSurname())
-                    .append(" not authenticated");
-            logger.info(builder.toString());
+            logger.info(LogMessages.userNoAuth(this));
         }
     }
 
