@@ -5,6 +5,7 @@ import it.unipr.ingegneria.entities.api.IAuthentication;
 import it.unipr.ingegneria.entities.api.IObserver;
 import it.unipr.ingegneria.entities.exception.AvailabilityException;
 import it.unipr.ingegneria.entities.exception.NotFoundException;
+import it.unipr.ingegneria.entities.notifications.CustomerNotification;
 import it.unipr.ingegneria.utils.Params;
 import it.unipr.ingegneria.utils.Type;
 import org.apache.log4j.Logger;
@@ -14,11 +15,15 @@ import java.util.Map;
 
 public class Customer extends User implements IAuthentication, IObserver {
 
+
     private static final Logger logger = Logger.getLogger(Customer.class);
-    private CustomerInfo notification;
+    private CustomerNotification notification;
+    private Boolean isAuthenticated;
+
 
     public Customer(long id, String name, String surname, String email, String password, WineShop wineShop) {
         super(id, name, surname, email, password, Type.CLIENT);
+        this.isAuthenticated = false;
         setWineshop(wineShop);
     }
 
@@ -30,7 +35,7 @@ public class Customer extends User implements IAuthentication, IObserver {
                 Map<Params, Object> elements = new HashMap<>();
                 elements.put(Params.QTY, String.valueOf(quantity));
                 elements.put(Params.NAME, name);
-                this.wineshop.sellWine(elements);
+                this.getWineshop().sellWine(elements);
             } catch (AvailabilityException e) {
                  builder = new StringBuilder()
                         .append("Dear ")
@@ -42,14 +47,16 @@ public class Customer extends User implements IAuthentication, IObserver {
                         .append(" at the moment is not available");
                 logger.info(builder.toString());
                 notification =
-                        new CustomerInfo()
+                        new CustomerNotification()
                                 .setCustomer(this)
+                                .setQuantity(quantity)
                                 .setWineName(name);
-                this.wineshop.addObserver(notification);
+                this.getWineshop().addObserver(notification);
             } catch (Exception e) {
                 logger.info(e);
             }
         }  else {
+
             builder = new StringBuilder()
                     .append("User ")
                     .append(this.getName())
@@ -62,19 +69,19 @@ public class Customer extends User implements IAuthentication, IObserver {
 
     @Override
     public void login(String email, String password) throws Exception {
-        if (!this.wineshop.hasUser(this))
+        if (!this.getWineshop().hasUser(this))
             throw new NotFoundException();
 
-        isAuthenticated = this.getEmail().equals(email) && this.getPassword().equals(password) && this.wineshop.hasUser(this);
+        isAuthenticated = this.getEmail().equals(email) && this.getPassword().equals(password) && this.getWineshop().hasUser(this);
     }
 
     @Override
     public void logout() throws Exception {
-        if (!this.wineshop.hasUser(this))
+        if (!this.getWineshop().hasUser(this))
             throw new NotFoundException();
 
-        this.wineshop.deleteUser(this);
-        isAuthenticated = this.wineshop.hasUser(this);
+        this.getWineshop().deleteUser(this);
+        isAuthenticated = this.getWineshop().hasUser(this);
     }
 
 
@@ -89,7 +96,7 @@ public class Customer extends User implements IAuthentication, IObserver {
                 .append(" the wine that you searched ")
                 .append(notification.getWineName())
                 .append(" is now is available");
-        // this.wineshop.removeObserver(notification);
+        this.getWineshop().removeObserver(notification);
         logger.info(builder.toString());
     }
 }

@@ -9,36 +9,20 @@ import java.util.Observer;
 
 public abstract class User {
 
-    private long _id;
+    private long id;
     private String name;
     private String surname;
     private String email;
     private String password;
     private Type userType;
-    protected WineShop wineshop;
-    protected Boolean isAuthenticated;
-    private Observer observerType;
+    private WineShop wineshop;
 
-    public User(long _id, String name, String surname, String email, String password, Type type) {
-        this._id = _id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.userType = type;
-        this.isAuthenticated = false;
+    public long getId() {
+        return id;
     }
 
-    public long get_id() {
-        return _id;
-    }
-
-    public void set_id(long _id) {
-        this._id = _id;
-    }
-
-    public User setName(String name) {
-        this.name = name;
+    public User setId(long id) {
+        this.id = id;
         return this;
     }
 
@@ -46,12 +30,8 @@ public abstract class User {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public User setSurname(String surname) {
-        this.surname = surname;
+    public User setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -59,8 +39,17 @@ public abstract class User {
         return surname;
     }
 
-    public User setPassword(String password) {
-        this.password = password;
+    public User setSurname(String surname) {
+        this.surname = surname;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -68,8 +57,8 @@ public abstract class User {
         return password;
     }
 
-    public User setUserType(Type type) {
-        this.userType = type;
+    public User setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -77,20 +66,28 @@ public abstract class User {
         return userType;
     }
 
-    public void setWineshop(WineShop wineshop) {
-        this.wineshop = wineshop;
+    public User setUserType(Type userType) {
+        this.userType = userType;
+        return this;
     }
 
     public WineShop getWineshop() {
         return wineshop;
     }
 
-    public void setObserverType(Observer type) {
-        this.observerType = observerType;
+    public User setWineshop(WineShop wineshop) {
+        this.wineshop = wineshop;
+        return this;
     }
 
-    public Observer getObserverType() {
-        return observerType;
+    public User(long _id, String name, String surname, String email, String password, Type type) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.userType = type;
     }
+
 
 }

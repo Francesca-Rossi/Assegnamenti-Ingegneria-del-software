@@ -1,9 +1,7 @@
 package it.unipr.ingegneria.entities.api;
 
-public interface IObservable  <T, C> {
+public interface IObservable  <T> {
     void addObserver(T t);
     void removeObserver(T t);
-    void avaible(C c);
-    void finish();
-    void allarm(C c, T t);
+
 }
