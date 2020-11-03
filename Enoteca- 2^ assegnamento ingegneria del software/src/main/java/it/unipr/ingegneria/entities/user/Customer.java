@@ -1,5 +1,7 @@
 package it.unipr.ingegneria.entities.user;
 
+import it.unipr.ingegneria.entities.Order;
+import it.unipr.ingegneria.entities.Wine;
 import it.unipr.ingegneria.entities.WineShop;
 import it.unipr.ingegneria.entities.api.IAuthentication;
 import it.unipr.ingegneria.entities.api.IObserver;
@@ -11,8 +13,7 @@ import it.unipr.ingegneria.utils.Params;
 import it.unipr.ingegneria.utils.Type;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Customer extends User implements IAuthentication, IObserver {
 
@@ -20,10 +21,11 @@ public class Customer extends User implements IAuthentication, IObserver {
     private static final Logger logger = Logger.getLogger(Customer.class);
     private CustomerNotification notification;
     private Boolean isAuthenticated;
-
+    private List<Order> orders;
 
     public Customer(long id, String name, String surname, String email, String password, WineShop wineShop) {
         super(id, name, surname, email, password, Type.CLIENT);
+        this.orders = new ArrayList<>();
         this.isAuthenticated = false;
         setWineshop(wineShop);
     }
@@ -33,10 +35,22 @@ public class Customer extends User implements IAuthentication, IObserver {
 
         if (isAuthenticated) {
             try {
+
                 Map<Params, Object> elements = new HashMap<>();
                 elements.put(Params.QTY, String.valueOf(quantity));
                 elements.put(Params.NAME, name);
-                this.getWineshop().sellWine(elements);
+                logger.info("User " + this.getName() + " " + this.getSurname() + " asked for " + name);
+                List<Wine> workedWines = this.getWineshop().sellWine(elements);
+
+                Order order = new Order()
+                        .setID(Long.valueOf(orders.size() + 1))
+                        .setDate(new Date())
+                        .setWine(workedWines)
+                        .setDelivered(false);
+
+                this.orders.add(order);
+
+                logger.info(LogMessages.userCompletedOrder(this));
             } catch (AvailabilityException e) {
                 logger.info(LogMessages.wineEnded(this, name));
                 notification =
@@ -48,7 +62,7 @@ public class Customer extends User implements IAuthentication, IObserver {
             } catch (Exception e) {
                 logger.info(e);
             }
-        }  else {
+        } else {
             logger.info(LogMessages.userNoAuth(this));
         }
     }
@@ -73,16 +87,20 @@ public class Customer extends User implements IAuthentication, IObserver {
 
     @Override
     public void update(Object o) {
-
-        StringBuilder builder = new StringBuilder()
-                .append("Dear ")
-                .append(this.getName())
-                .append(" ")
-                .append(this.getSurname())
-                .append(" the wine that you searched ")
-                .append(notification.getWineName())
-                .append(" is now is available");
         this.getWineshop().removeObserver(notification);
-        logger.info(builder.toString());
+        logger.info(LogMessages.userNotification(this, notification));
+    }
+
+    public List<Wine> findByName(String name) {
+        return this.getWineshop().findByName(name);
+    }
+
+
+    public List<Wine> findByYear(int d) {
+        return this.getWineshop().findByYear(d);
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

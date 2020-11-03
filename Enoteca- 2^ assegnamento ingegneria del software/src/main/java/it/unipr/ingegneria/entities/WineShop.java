@@ -9,12 +9,13 @@ import it.unipr.ingegneria.entities.exception.AvailabilityException;
 import it.unipr.ingegneria.entities.exception.RequiredValueException;
 import it.unipr.ingegneria.entities.notifications.CustomerNotification;
 import it.unipr.ingegneria.entities.user.Customer;
+import it.unipr.ingegneria.entities.user.Employee;
 import it.unipr.ingegneria.entities.user.User;
 import it.unipr.ingegneria.utils.Params;
+import it.unipr.ingegneria.utils.Type;
 import org.apache.log4j.Logger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -25,26 +26,30 @@ public class WineShop implements
 
     private Warehouse warehouse;
     private List<User> users;
+    private ProvisioningManager provisioningManager;
     private List<CustomerNotification> observers = new ArrayList<>();
 
     public WineShop() {
         this.users = new ArrayList<>();
+        this.provisioningManager = new ProvisioningManager();
         this.warehouse = new Warehouse();
         warehouse.addObserver(this);
     }
 
 
     @Override
-    public void sellWine(Map<Params, Object> elements) throws AvailabilityException {
+    public List<Wine> sellWine(Map<Params, Object> elements) throws AvailabilityException {
+        List<Wine> workedWines = new ArrayList<>();
         try {
-
-            this.warehouse.remove(elements);
+            workedWines = this.warehouse.remove(elements);
         } catch (RequiredValueException e) {
             logger.info(e);
         } catch (AvailabilityException e) {
             throw new AvailabilityException();
         } catch (Exception e) {
+            logger.info(e.getMessage());
         }
+        return workedWines;
     }
 
 
@@ -60,6 +65,16 @@ public class WineShop implements
     }
 
     @Override
+    public void sendOrders() {
+        users.stream()
+                .filter(u -> u.getUserType().equals(Type.CLIENT))
+                .map(user -> ((Customer) user))
+                .map(customer -> customer.getOrders())
+                .filter(orders -> !orders.isEmpty())
+                .forEach((x) -> x.stream().forEach((i) -> i.setDelivered(true)));
+    }
+
+    @Override
     public List<Wine> findByName(String name) {
         return this.warehouse.findByName(name);
     }
@@ -72,6 +87,8 @@ public class WineShop implements
 
     @Override
     public void addUser(User user) {
+        if (user.getUserType().equals(Type.EMPLOYEE))
+            this.provisioningManager.addObserver((Employee) user);
         this.users.add(user);
     }
 
@@ -92,6 +109,7 @@ public class WineShop implements
 
         for (CustomerNotification observer : this.observers) {
             String wineName = observer.getWineName();
+
             int sizes = winesAvailable.stream()
                     .filter(i -> i.getName().equals(wineName))
                     .collect(Collectors.toList()).size();
@@ -105,6 +123,11 @@ public class WineShop implements
     @Override
     public void addObserver(CustomerNotification user) {
         this.observers.add(user);
+        // ToDO: If you want generate random provisiong do it here
+        Map<Params, Object> elements = new HashMap<>();
+        elements.put(Params.NAME, user.getWineName());
+        elements.put(Params.QTY, String.valueOf(user.getQuantity()));
+        this.provisioningManager.handleProvisioning(elements);
     }
 
     @Override
