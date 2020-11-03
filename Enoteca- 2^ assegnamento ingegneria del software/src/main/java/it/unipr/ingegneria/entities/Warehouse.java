@@ -1,9 +1,9 @@
 package it.unipr.ingegneria.entities;
 
-import it.unipr.ingegneria.entities.api.IObservable;
-import it.unipr.ingegneria.entities.api.IWarehouseManager;
-import it.unipr.ingegneria.entities.exception.AvailabilityException;
-import it.unipr.ingegneria.entities.exception.RequiredValueException;
+import it.unipr.ingegneria.api.IObservable;
+import it.unipr.ingegneria.api.IWarehouseManager;
+import it.unipr.ingegneria.exception.AvailabilityException;
+import it.unipr.ingegneria.exception.RequiredValueException;
 
 import it.unipr.ingegneria.utils.Params;
 import it.unipr.ingegneria.builders.WineBuilder;

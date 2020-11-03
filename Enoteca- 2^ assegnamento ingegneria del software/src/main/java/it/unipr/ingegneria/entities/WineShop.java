@@ -1,12 +1,12 @@
 package it.unipr.ingegneria.entities;
 
 
-import it.unipr.ingegneria.entities.api.IObservable;
-import it.unipr.ingegneria.entities.api.IObserver;
-import it.unipr.ingegneria.entities.api.IStoreManager;
-import it.unipr.ingegneria.entities.api.IUserManager;
-import it.unipr.ingegneria.entities.exception.AvailabilityException;
-import it.unipr.ingegneria.entities.exception.RequiredValueException;
+import it.unipr.ingegneria.api.IObservable;
+import it.unipr.ingegneria.api.IObserver;
+import it.unipr.ingegneria.api.IStoreManager;
+import it.unipr.ingegneria.api.IUserManager;
+import it.unipr.ingegneria.exception.AvailabilityException;
+import it.unipr.ingegneria.exception.RequiredValueException;
 import it.unipr.ingegneria.entities.notifications.CustomerNotification;
 import it.unipr.ingegneria.entities.user.Customer;
 import it.unipr.ingegneria.entities.user.Employee;

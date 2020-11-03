@@ -1,4 +1,4 @@
-package it.unipr.ingegneria.entities.api;
+package it.unipr.ingegneria.api;
 
 import it.unipr.ingegneria.entities.user.User;
 

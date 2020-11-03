@@ -1,4 +1,4 @@
-package it.unipr.ingegneria.entities.api;
+package it.unipr.ingegneria.api;
 
 public interface IObservable  <T> {
     void addObserver(T t);

@@ -1,4 +1,4 @@
-package it.unipr.ingegneria.entities.exception;
+package it.unipr.ingegneria.exception;
 
 public class AvailabilityException extends Exception {
     public AvailabilityException() { }

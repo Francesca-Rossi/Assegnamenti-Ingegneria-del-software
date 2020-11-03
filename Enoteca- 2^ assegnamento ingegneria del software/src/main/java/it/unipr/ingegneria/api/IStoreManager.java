@@ -1,6 +1,6 @@
-package it.unipr.ingegneria.entities.api;
+package it.unipr.ingegneria.api;
 
-import it.unipr.ingegneria.entities.exception.AvailabilityException;
+import it.unipr.ingegneria.exception.AvailabilityException;
 import it.unipr.ingegneria.utils.Params;
 
 import java.util.List;

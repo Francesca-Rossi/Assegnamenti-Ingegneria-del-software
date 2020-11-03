@@ -1,7 +1,7 @@
 package it.unipr.ingegneria.entities.user;
 
-import it.unipr.ingegneria.entities.api.IObserver;
-import it.unipr.ingegneria.entities.api.IStoreManager;
+import it.unipr.ingegneria.api.IObserver;
+import it.unipr.ingegneria.api.IStoreManager;
 import it.unipr.ingegneria.utils.LogMessages;
 import it.unipr.ingegneria.utils.Params;
 import it.unipr.ingegneria.utils.Type;
