@@ -6,18 +6,17 @@ import it.unipr.ingegneria.utils.Params;
 import org.apache.log4j.Logger;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ProvisioningManager implements IObservable<Employee> {
 
     private List<Employee> managedEmployees;
+    private Queue<Map> ordersQueue;
     private static final Logger logger = Logger.getLogger(ProvisioningManager.class);
 
     public ProvisioningManager() {
         this.managedEmployees = new ArrayList<>();
+        this.ordersQueue = new LinkedList<Map>();
     }
 
 
@@ -39,7 +38,12 @@ public class ProvisioningManager implements IObservable<Employee> {
         if (optionalEmployee.isPresent()) {
             Employee employee = optionalEmployee.get();
             employee.setWorking(true);
+            if (!ordersQueue.isEmpty())
+                ordersQueue.stream().forEach(order -> employee.update(elements));
             employee.update(elements);
+        }
+        if (!optionalEmployee.isPresent()) {
+            this.ordersQueue.add(elements);
         }
     }
 
