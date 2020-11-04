@@ -2,25 +2,26 @@ package it.unipr.ingegneria.entities;
 
 
 import org.apache.log4j.Logger;
-
 import java.util.Date;
+import java.util.List;
 
-public  class Wine {
+public class Wine {
 
     private long _id;
     private String name;
     private Date year;
     private String producer;
     private String techNotes;
-    Logger logger = Logger.getLogger(Wine.class);
+    private List<Vineyard> vineyards;
 
-    public Wine(long _id, String name, Date year, String producer, String techNotes)
-    {
-        this._id=_id;
-        this.name=name;
-        this.year=year;
-        this.producer=producer;
-        this.techNotes=techNotes;
+    private static final Logger logger = Logger.getLogger(Wine.class);
+
+    public Wine(long _id, String name, Date year, String producer, String techNotes) {
+        this._id = _id;
+        this.name = name;
+        this.year = year;
+        this.producer = producer;
+        this.techNotes = techNotes;
     }
 
     public long get_id() {
@@ -63,13 +64,20 @@ public  class Wine {
         this.techNotes = techNotes;
     }
 
+    public List<Vineyard> getVineyards() {
+        return vineyards;
+    }
+
+    public void setVineyards(List<Vineyard> vineyards) {
+        this.vineyards = vineyards;
+    }
 
     @Override
     public boolean equals(Object anObject) {
         if (!(anObject instanceof Wine)) {
             return false;
         }
-        Wine otherMember = (Wine)anObject;
+        Wine otherMember = (Wine) anObject;
         return otherMember.get_id() == this._id;
     }
 }
