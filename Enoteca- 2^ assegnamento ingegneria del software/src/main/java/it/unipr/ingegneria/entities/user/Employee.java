@@ -51,7 +51,13 @@ public class Employee extends User implements IObserver {
     public void update(Object o) {
         Map<Params, Object> elements = (Map<Params, Object>) o;
         String name = (String) elements.get(Params.NAME);
-        Integer number = Integer.parseInt((String) elements.get(Params.QTY));
+        Integer number;
+        try {
+            number = Integer.parseInt((String) elements.get(Params.QTY));
+        } catch (Exception e) {
+            number = (Integer) elements.get(Params.QTY);
+        }
+
         provisionWine(name, number);
     }
 }

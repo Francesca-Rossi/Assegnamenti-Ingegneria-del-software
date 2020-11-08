@@ -27,10 +27,14 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
     }
 
     private Map<String, List<Wine>> items;
+    private ProvisioningManager provisioningManager;
+
 
     public Warehouse() {
         items = new HashMap<>();
+        this.provisioningManager = new ProvisioningManager();
     }
+
 
     public void add(Map<Params, Object> elements) throws RequiredValueException {
         isValidValues(elements);
@@ -75,6 +79,7 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
                 items.replace(name, workedWines);
             }
         }
+
         return workedWines;
     }
 
@@ -104,7 +109,6 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
 
     private void isValidValues(Map<Params, Object> elements) throws RequiredValueException {
         String name = (String) elements.get(Params.NAME);
-        // ToDo: RequiredValueException
         if (name == null || name.isEmpty())
             throw new RequiredValueException(Params.NAME.name());
 
@@ -148,5 +152,24 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
 
     private int workWithDate(Date date) {
         return LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date)).getYear();
+    }
+
+    public ProvisioningManager getProvisioningManager() {
+        return provisioningManager;
+    }
+
+    public void checkAvaibility() {
+        Map<Params, Object> elements = new HashMap<>();
+        Iterator<Map.Entry<String, List<Wine>>> iterator = items.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<Wine>> entry = iterator.next();
+            if (entry.getValue().size() == 0) {
+                // ToDO: If you want generate random provisiong do it here
+                elements.put(Params.NAME, entry.getKey());
+                elements.put(Params.QTY, 15);
+                this.provisioningManager.handleProvisioning(elements);
+            }
+
+        }
     }
 }

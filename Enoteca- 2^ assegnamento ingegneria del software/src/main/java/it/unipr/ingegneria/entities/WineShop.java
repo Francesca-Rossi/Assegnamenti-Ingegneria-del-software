@@ -27,12 +27,14 @@ public class WineShop implements
     private Warehouse warehouse;
     private List<User> users;
     private ProvisioningManager provisioningManager;
+
     private List<CustomerNotification> observers = new ArrayList<>();
 
     public WineShop() {
         this.users = new ArrayList<>();
-        this.provisioningManager = new ProvisioningManager();
+
         this.warehouse = new Warehouse();
+        this.provisioningManager = warehouse.getProvisioningManager();
         warehouse.addObserver(this);
     }
 
@@ -41,15 +43,17 @@ public class WineShop implements
     public List<Wine> sellWine(Map<Params, Object> elements) throws AvailabilityException {
         List<Wine> workedWines = new ArrayList<>();
         try {
-            workedWines = this.warehouse.remove(elements);
+            return this.warehouse.remove(elements);
         } catch (RequiredValueException e) {
             logger.info(e);
         } catch (AvailabilityException e) {
             throw new AvailabilityException();
         } catch (Exception e) {
             logger.info(e.getMessage());
+        } finally {
+            this.warehouse.checkAvaibility();
         }
-        return workedWines;
+        return null;
     }
 
 
@@ -123,11 +127,6 @@ public class WineShop implements
     @Override
     public void addObserver(CustomerNotification user) {
         this.observers.add(user);
-        // ToDO: If you want generate random provisiong do it here
-        Map<Params, Object> elements = new HashMap<>();
-        elements.put(Params.NAME, user.getWineName());
-        elements.put(Params.QTY, String.valueOf(user.getQuantity()));
-        this.provisioningManager.handleProvisioning(elements);
     }
 
     @Override
