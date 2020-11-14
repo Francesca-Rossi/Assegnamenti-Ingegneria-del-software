@@ -6,7 +6,14 @@ import it.unipr.ingegneria.utils.Type;
 
 import java.util.Observer;
 
-
+/**
+ * The {@code User} is an abstract class.
+ * It is the parent class of {@code Customer} and {@code Employee}.
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ * @see Customer
+ * @see Employee
+ */
 public abstract class User {
 
     private long id;

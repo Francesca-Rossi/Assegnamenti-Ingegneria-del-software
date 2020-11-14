@@ -2,7 +2,10 @@ package it.unipr.ingegneria.entities;
 
 import java.util.Date;
 import java.util.List;
-
+/**
+ * The {@code Order} class rappresent an order of wine
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ */
 public class Order {
 
     private long ID;
@@ -13,6 +16,12 @@ public class Order {
     public Order() {
     }
 
+    /**
+     * Main costructor
+     * @param id order id
+     * @param date Date
+     * @param wine Wine
+     */
     public Order(long id, Date date, List<Wine> wine) {
         this.ID = id;
         this.date = date;

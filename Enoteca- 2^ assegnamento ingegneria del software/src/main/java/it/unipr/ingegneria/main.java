@@ -7,7 +7,10 @@ import it.unipr.ingegneria.entities.user.Customer;
 import it.unipr.ingegneria.entities.user.Employee;
 import java.util.List;
 
-
+/**
+ * Is the main class of the system
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ */
 public class main {
     public static void main(String... args) throws Exception {
 
@@ -31,6 +34,9 @@ public class main {
         Customer customer1 = new Customer(2L, "Mario", "Rossi", "email", "pwd", wineShop);
         wineShop.addUser(customer1);
         customer1.login("email", "pwd");
+        customer1.order("Lambrusco", 30);
+
+        emp.provisionWine("Lambrusco", 15);
         customer1.order("Lambrusco", 30);
 
         emp.sendOrders();

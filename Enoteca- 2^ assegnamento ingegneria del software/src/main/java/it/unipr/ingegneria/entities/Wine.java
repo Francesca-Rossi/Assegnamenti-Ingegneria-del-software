@@ -2,9 +2,15 @@ package it.unipr.ingegneria.entities;
 
 
 import org.apache.log4j.Logger;
+
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The {@code Wine} class has the method to manage the wine.
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ */
 public class Wine {
 
     private long _id;
@@ -16,7 +22,35 @@ public class Wine {
 
     private static final Logger logger = Logger.getLogger(Wine.class);
 
+    /**
+     * Default class constructor without Vineyards
+     *
+     * @param _id id of wine
+     * @param name name of Wine
+     * @param year year of Wine
+     * @param producer producer of Wine
+     * @param techNotes notes of Wine
+     */
     public Wine(long _id, String name, Date year, String producer, String techNotes) {
+        this._id = _id;
+        this.name = name;
+        this.year = year;
+        this.producer = producer;
+        this.techNotes = techNotes;
+    }
+
+
+    /**
+     * Default class constructor without Vineyards
+     *
+     * @param _id id of wine
+     * @param name name of Wine
+     * @param year year of Wine
+     * @param producer producer of Wine
+     * @param techNotes notes of Wine
+     * @param vineyards List of Vineyard of source
+     */
+    public Wine(long _id, String name, Date year, String producer, String techNotes, List<Vineyard> vineyards) {
         this._id = _id;
         this.name = name;
         this.year = year;
@@ -70,14 +104,5 @@ public class Wine {
 
     public void setVineyards(List<Vineyard> vineyards) {
         this.vineyards = vineyards;
-    }
-
-    @Override
-    public boolean equals(Object anObject) {
-        if (!(anObject instanceof Wine)) {
-            return false;
-        }
-        Wine otherMember = (Wine) anObject;
-        return otherMember.get_id() == this._id;
     }
 }

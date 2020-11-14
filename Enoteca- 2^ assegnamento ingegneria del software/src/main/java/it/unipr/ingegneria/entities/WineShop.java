@@ -18,6 +18,15 @@ import org.apache.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The {@code WineShop} is a class for the manage the wine and people inside the shop.
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ * @see it.unipr.ingegneria.api.IUserManager
+ * @see it.unipr.ingegneria.api.IObservable
+ * @see it.unipr.ingegneria.api.IObserver
+ * @see it.unipr.ingegneria.api.IStoreManager
+ */
 
 public class WineShop implements
         IUserManager, IStoreManager<Wine>, IObservable<CustomerNotification>, IObserver {
@@ -38,10 +47,15 @@ public class WineShop implements
         warehouse.addObserver(this);
     }
 
-
+    /**
+     * Method implementation to sell the wine at the client
+     *
+     * @param elements Map that contains info about Wine as name and quantity
+     * @return list of wine
+     * @throws AvailabilityException
+     */
     @Override
     public List<Wine> sellWine(Map<Params, Object> elements) throws AvailabilityException {
-        List<Wine> workedWines = new ArrayList<>();
         try {
             return this.warehouse.remove(elements);
         } catch (RequiredValueException e) {
@@ -56,7 +70,11 @@ public class WineShop implements
         return null;
     }
 
-
+    /**
+     * Method implementation for provision wine in warehouse
+     *
+     * @param elements Map that contains info about Wine as name and quantity
+     */
     @Override
     public void provisionWine(Map<Params, Object> elements) {
         try {
@@ -68,8 +86,12 @@ public class WineShop implements
         }
     }
 
+    /**
+     * Method implementation to send the orders to clients
+     */
     @Override
     public void sendOrders() {
+        logger.info("Sending Orderes");
         users.stream()
                 .filter(u -> u.getUserType().equals(Type.CLIENT))
                 .map(user -> ((Customer) user))
@@ -78,17 +100,33 @@ public class WineShop implements
                 .forEach((x) -> x.stream().forEach((i) -> i.setDelivered(true)));
     }
 
+    /**
+     * Research implementation for search wine by name
+     *
+     * @param name
+     * @return list of wine
+     */
     @Override
     public List<Wine> findByName(String name) {
         return this.warehouse.findByName(name);
     }
 
+    /**
+     * Research implementation for search wine by year
+     *
+     * @param d
+     * @return list of wine
+     */
     @Override
     public List<Wine> findByYear(int d) {
         return this.warehouse.findByYear(d);
     }
 
-
+    /**
+     * Implementation used for add user in the shop
+     *
+     * @param user
+     */
     @Override
     public void addUser(User user) {
         if (user.getUserType().equals(Type.EMPLOYEE))
@@ -96,17 +134,33 @@ public class WineShop implements
         this.users.add(user);
     }
 
+    /**
+     * Implementation used for remove user from the shop
+     *
+     * @param user User
+     */
     @Override
     public void deleteUser(User user) {
         this.users.remove(user);
     }
 
+
+    /**
+     * Implementation for check if the shop contain and therefore has registed a certain user
+     *
+     * @param item
+     * @return boolean
+     */
     @Override
     public Boolean hasUser(User item) {
         return this.users.contains(item);
     }
 
-
+    /**
+     * Method called when the state of wine in the warehouse is changed
+     *
+     * @param o
+     */
     @Override
     public void update(Object o) {
         List<Wine> winesAvailable = this.warehouse.getAvailableWines();

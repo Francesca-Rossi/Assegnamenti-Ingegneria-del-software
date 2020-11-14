@@ -1,5 +1,10 @@
 package it.unipr.ingegneria.entities;
 
+/**
+ * The {@code Vineyard} class contains the info of the vineyard
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ */
 public class Vineyard {
     private String name;
 

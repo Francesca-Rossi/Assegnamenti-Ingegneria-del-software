@@ -15,7 +15,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
+/**
+ * The {@code Warehouse} is a class used to manage the stocks of the wine.
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ */
 public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop> {
 
     private static final Logger logger = Logger.getLogger(Warehouse.class);
@@ -35,7 +39,12 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
         this.provisioningManager = new ProvisioningManager();
     }
 
-
+    /**
+     * Add a new wine
+     *
+     * @param elements Map that contains info about Wine as name and quantity
+     * @throws RequiredValueException Exception launched when Wine is not available
+     */
     public void add(Map<Params, Object> elements) throws RequiredValueException {
         isValidValues(elements);
         String name = (String) elements.get(Params.NAME);
@@ -54,6 +63,14 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
         updateSubscribers();
     }
 
+    /**
+     * Remove the wine and return the Wines if the number is less  or equal to the required quantity
+     *
+     * @param elements Map that contains info about Wine as name and quantity
+     * @return List of Wine
+     * @throws RequiredValueException  Exception launched when params are not valid
+     * @throws AvailabilityException Exception launched when Wine is not available
+     */
     public List<Wine> remove(Map<Params, Object> elements) throws RequiredValueException, AvailabilityException {
         isValidValues(elements);
         List<Wine> workedWines = new ArrayList<>();
@@ -83,6 +100,11 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
         return workedWines;
     }
 
+    /**
+     * Return all the wine available
+     *
+     * @return List of Wine
+     */
     public List<Wine> getAvailableWines() {
         ArrayList<Wine> allItems = new ArrayList<>();
         items.entrySet().stream().forEach(i -> allItems.addAll(i.getValue()));
@@ -90,11 +112,23 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
 
     }
 
+    /**
+     * Research a wine by name inside the warehouse
+     *
+     * @param name name
+     * @return List of Wine
+     */
     public List<Wine> findByName(String name) {
 
         return this.items.get(name);
     }
 
+    /**
+     * Research a wine by year inside the warehouse
+     *
+     * @param year year
+     * @return List of Wine
+     */
     public List<Wine> findByYear(int year) {
         ArrayList<Wine> allItems = new ArrayList<>();
         Iterator<Map.Entry<String, List<Wine>>> iterator = items.entrySet().iterator();
@@ -107,6 +141,12 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
         return allItems;
     }
 
+    /**
+     * Check if the params are present and are correct
+     *
+     * @param elements
+     * @throws RequiredValueException
+     */
     private void isValidValues(Map<Params, Object> elements) throws RequiredValueException {
         String name = (String) elements.get(Params.NAME);
         if (name == null || name.isEmpty())
@@ -117,23 +157,42 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
             throw new RequiredValueException(Params.QTY.name());
     }
 
-
+    /**
+     * Add a wineshop into observer list
+     *
+     * @param wineShop
+     */
     @Override
     public void addObserver(WineShop wineShop) {
         this.observers.add(wineShop);
     }
 
+
+    /**
+     * Remove a wineshop by the observer list
+     *
+     * @param wineShop
+     */
     @Override
     public void removeObserver(WineShop wineShop) {
         this.observers.remove(wineShop);
     }
 
+    /**
+     * Update the state of the Wines in warehouse
+     */
     public void updateSubscribers() {
         for (WineShop observer : this.observers) {
             observer.update(null);
         }
     }
 
+    /**
+     * Build a wine instance
+     *
+     * @param elements
+     * @return List of Wine
+     */
     private List<Wine> buildWines(Map<Params, Object> elements) {
         String name = (String) elements.get(Params.NAME);
         Integer number = Integer.parseInt((String) elements.get(Params.QTY));
@@ -150,14 +209,30 @@ public class Warehouse implements IWarehouseManager<Wine>, IObservable<WineShop>
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Extract year from a Date Object
+     *
+     * @param date
+     * @return year as integer
+     */
     private int workWithDate(Date date) {
         return LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date)).getYear();
     }
 
+    /**
+     * Return a Provisioning Manager assigned to current Warehouse
+     *
+     * @return ProvisioningManager
+     */
     public ProvisioningManager getProvisioningManager() {
         return provisioningManager;
     }
 
+
+    /**
+     * Check in current Warehouse the wines that are finished and if founded notify the ProvisioningManager
+     *
+     */
     public void checkAvaibility() {
         Map<Params, Object> elements = new HashMap<>();
         Iterator<Map.Entry<String, List<Wine>>> iterator = items.entrySet().iterator();

@@ -15,6 +15,16 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
+
+/**
+ * The {@code Customer} class defines the behavior of the User type Customer.
+ * Extends the class {@code User} and implements {@code IAuthentication} and {@code IObserver} interface
+ *
+ * @author Ruslan Vasyunin, Francesca Rossi, Everton Ejike
+ * @see it.unipr.ingegneria.api.IAuthentication
+ * @see it.unipr.ingegneria.api.IObserver
+ * @see it.unipr.ingegneria.entities.user.User
+ */
 public class Customer extends User implements IAuthentication, IObserver {
 
 
@@ -23,6 +33,16 @@ public class Customer extends User implements IAuthentication, IObserver {
     private Boolean isAuthenticated;
     private List<Order> orders;
 
+    /**
+     * Default class constructor
+     *
+     * @param id Customer Id
+     * @param name Customer Name
+     * @param surname Customer Surname
+     * @param email Customer email
+     * @param password Customer Password
+     * @param wineShop Desired Wineshop
+     */
     public Customer(long id, String name, String surname, String email, String password, WineShop wineShop) {
         super(id, name, surname, email, password, Type.CLIENT);
         this.orders = new ArrayList<>();
@@ -30,7 +50,12 @@ public class Customer extends User implements IAuthentication, IObserver {
         setWineshop(wineShop);
     }
 
-
+    /**
+     * Method to create an order
+     *
+     * @param name Name of wine
+     * @param quantity Desired quantity
+     */
     public void order(String name, int quantity) {
 
         if (isAuthenticated) {
@@ -67,6 +92,14 @@ public class Customer extends User implements IAuthentication, IObserver {
         }
     }
 
+
+    /**
+     * Method to login to the system
+     *
+     * @param email Email
+     * @param password Password
+     * @throws Exception
+     */
     @Override
     public void login(String email, String password) throws Exception {
         if (!this.getWineshop().hasUser(this))
@@ -75,6 +108,11 @@ public class Customer extends User implements IAuthentication, IObserver {
         isAuthenticated = this.getEmail().equals(email) && this.getPassword().equals(password) && this.getWineshop().hasUser(this);
     }
 
+    /**
+     * Method to log out of the system
+     *
+     * @throws Exception
+     */
     @Override
     public void logout() throws Exception {
         if (!this.getWineshop().hasUser(this))
@@ -84,22 +122,43 @@ public class Customer extends User implements IAuthentication, IObserver {
         isAuthenticated = this.getWineshop().hasUser(this);
     }
 
-
+    /**
+     * Receive notification from Warehouse and print to console the message with info of available Wine
+     *
+     * @param o Object that can contains info of notification
+     */
     @Override
     public void update(Object o) {
-        this.getWineshop().removeObserver(notification);
         logger.info(LogMessages.userNotification(this, notification));
+        this.getWineshop().removeObserver(notification);
+
     }
 
+    /**
+     * Method to find a list of wines by name
+     *
+     * @param name of searched Wine
+     * @return list of {@code Wine}
+     */
     public List<Wine> findByName(String name) {
         return this.getWineshop().findByName(name);
     }
 
 
+    /**
+     * Method to find a list of wines by year
+     *
+     * @param d Year of searched Wine
+     * @return list of {@code Wine}
+     */
     public List<Wine> findByYear(int d) {
         return this.getWineshop().findByYear(d);
     }
 
+    /**
+     * Method to get all orders of current customer
+     * @return list of {@code Order}
+     */
     public List<Order> getOrders() {
         return orders;
     }
