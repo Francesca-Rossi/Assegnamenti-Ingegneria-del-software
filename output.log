@@ -1,0 +1,45 @@
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Chianti
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Customer:42] - User Ciccio Pasticcio asked for Chianti
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:70] - Wine in Warehouse are available
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Customer:53] - User Ciccio Pasticcio has completed order
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Customer:42] - User Mario Rossi asked for Lambrusco
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Customer:55] - Dear Mario Rossi the wine that you searched Lambrusco at the moment is not available
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.ProvisioningManager:34] - Provisioning Manager received request
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:44:36 INFO [it.unipr.ingegneria.entities.user.Customer:91] - Dear Mario Rossi the wine that you searched Lambrusco is now is available
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Chianti
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Customer:42] - User Ciccio Pasticcio asked for Chianti
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:70] - Wine in Warehouse are available
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Customer:53] - User Ciccio Pasticcio has completed order
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Customer:42] - User Mario Rossi asked for Lambrusco
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Customer:55] - Dear Mario Rossi the wine that you searched Lambrusco at the moment is not available
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.ProvisioningManager:34] - Provisioning Manager received request
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Employee:27] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-08 14:45:34 INFO [it.unipr.ingegneria.entities.user.Customer:91] - Dear Mario Rossi the wine that you searched Lambrusco is now is available
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Employee:46] - Employee Luca Bianchi is provisiong wine Chianti
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Employee:46] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Customer:63] - User Ciccio Pasticcio asked for Chianti
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:70] - Wine in Warehouse are available
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Customer:74] - User Ciccio Pasticcio has completed order
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Customer:63] - User Mario Rossi asked for Lambrusco
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:59] - Check in Warehouse for availability of Wine
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Customer:76] - Dear Mario Rossi the wine that you searched Lambrusco at the moment is not available
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.ProvisioningManager:34] - Provisioning Manager received request
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Employee:46] - Employee Luca Bianchi is provisiong wine Lambrusco
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.Warehouse:38] - Add in Warehouse Wine
+2020-11-14 07:43:13 INFO [it.unipr.ingegneria.entities.user.Customer:125] - Dear Mario Rossi the wine that you searched Lambrusco is now is available
