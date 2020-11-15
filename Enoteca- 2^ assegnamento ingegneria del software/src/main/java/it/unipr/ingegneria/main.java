@@ -24,11 +24,14 @@ public class main {
 
         Customer customer = new Customer(1L, "Ciccio", "Pasticcio", "email", "pwd", wineShop);
         wineShop.addUser(customer);
+        
+        customer.login("email", "pwd");
+        customer.order("Chianti", 14);
+        
         List<Wine> l = customer.findByName("Chianti");
         List<Wine> a = customer.findByYear(2020);
 
-        customer.login("email", "pwd");
-        customer.order("Chianti", 14);
+
 
 
         Customer customer1 = new Customer(2L, "Mario", "Rossi", "email", "pwd", wineShop);
